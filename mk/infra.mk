@@ -112,7 +112,7 @@ $(M)/prom-op-servicemonitor: | $(M)/k8s-ready
 	touch $@
 
 $(M)/atomix: | $(M)/k8s-ready
-	helm repo update
+	#helm repo update
 ifeq ($(VER), v1.0.0)
 	kubectl create -f https://raw.githubusercontent.com/atomix/kubernetes-controller/0a9e82ef37df25cf567a4dbc18f35b2bb454bda1/deploy/atomix-controller.yaml
 	kubectl create -f https://raw.githubusercontent.com/atomix/raft-storage-controller/668951dff14e339f3c71b489863cbca8ec326a96/deploy/raft-storage-controller.yaml
@@ -147,7 +147,7 @@ endif
 	touch $@
 
 $(M)/onos-operator: | $(M)/k8s-ready
-	helm repo update
+	#helm repo update
 ifeq ($(VER), v1.0.0)
 	@echo v1.0.0 does not need onos-operator: skip deploying onos-operator chart
 else ifeq ($(VER), v1.1.0)

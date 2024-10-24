@@ -47,6 +47,7 @@ HELM_ARGS_FBAH					?= --set import.fb-ah-xapp.enabled=true --set import.fb-ah-gu
 HELM_ARGS_MLB       	        ?= --set import.ran-simulator.enabled=true --set import.onos-pci.enabled=true --set import.onos-mlb.enabled=true --set ran-simulator.pci.modelName=three-cell-n-node-model --set ran-simulator.pci.metricName=three-cell-n-node-metrics
 HELM_ARGS_MHO           	    ?= --set import.ran-simulator.enabled=true --set import.onos-mho.enabled=true --set ran-simulator.pci.modelName=two-cell-two-node-model
 HELM_ARGS_RIMEDOTS           	?= --set import.ran-simulator.enabled=true --set import.rimedo-ts.enabled=true --set ran-simulator.pci.modelName=two-cell-two-node-model
+HELM_ARGS_RSM_RANSIM           	?= --set import.ran-simulator.enabled=true --set import.onos-rsm.enabled=true 
 
 # Helm values file
 DEFAULT_HELM_VALUES				:= $(RIABDIR)/sdran-in-a-box-values-master-stable.yaml
@@ -74,6 +75,7 @@ DEFAULT_RIAB_NAMESPACE			:= riab
 RIAB_NAMESPACE					?= $(DEFAULT_RIAB_NAMESPACE)
 
 # URLs
+# git clone "https://gerrit.opencord.org/aether-helm-charts"
 CORD_GERRIT_URL					?= https://gerrit.opencord.org
 ONOS_GITHUB_URL					?= https://github.com/onosproject
 HELM_INCUBATOR_URL				?= https://charts.helm.sh/incubator

@@ -52,6 +52,9 @@ riab: option version preliminaries infra-k8s infra-atomix infra-onos-op ric
 else ifeq ($(OPT), rimedots)
 riab: option version preliminaries infra-k8s infra-atomix infra-onos-op ric
 	@echo Done
+else ifeq ($(OPT), rsm-ransim)
+riab: option version preliminaries infra-k8s infra-atomix infra-onos-op ric
+	@echo Done
 else
 riab: option version
 	@echo "Invalid option"
@@ -63,8 +66,10 @@ $(M)/repos: | $(M)
 	cd $(CHARTDIR)
 	@if [[ ! -d "$(AETHERCHARTDIR)" ]]; then \
                 echo "aether-helm-chart repo is not in $(CHARTDIR) directory. Start to clone - it requires HTTPS key"; \
-				git clone $(CORD_GERRIT_URL)/aether-helm-charts $(AETHERCHARTDIR) || true; \
+				git clone "https://gerrit.opencord.org/aether-helm-charts" $(AETHERCHARTDIR) || true; \
 	fi
+				#git clone $(CORD_GERRIT_URL)/aether-helm-charts $(AETHERCHARTDIR) || true; \
+
 	@if [[ ! -d "$(SDRANCHARTDIR)" ]]; then \
                 echo "sdran-helm-chart repo is not in $(CHARTDIR) directory. Start to clone - it requires Github credential"; \
 				git clone $(ONOS_GITHUB_URL)/sdran-helm-charts $(SDRANCHARTDIR) || true; \
@@ -108,6 +113,10 @@ else ifeq ($(OPT), rimedots)
 	$(eval OPT=ransim)
 	$(eval HELM_ARGS=$(HELM_ARGS_RIMEDOTS))
 	@echo "Helm arguments for rimedots: $(HELM_ARGS_RIMEDOTS)"
+else ifeq ($(OPT), rsm-ransim)
+	$(eval OPT=rsm-ransim)
+	$(eval HELM_ARGS=$(HELM_ARGS_RSM_RANSIM))
+	@echo "Helm arguments for RSM on ran sim: $(HELM_ARGS_RSM_RANSIM)"
 else
 	$(eval OPT=ransim)
 	$(eval HELM_ARGS=$(HELM_ARGS_RANSIM))
